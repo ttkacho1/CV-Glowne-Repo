@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
-    // Pobieranie danych z JSON
+    // Pobieranie danych z JSON 
     const skillsList = document.getElementById("skills-list");
     const projectsList = document.getElementById("projects-list");
 
