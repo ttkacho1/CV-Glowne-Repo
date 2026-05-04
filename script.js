@@ -107,5 +107,35 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
+    // Pobieranie danych z JSON
+    const skillsList = document.getElementById("skills-list");
+    const projectsList = document.getElementById("projects-list");
+
+    fetch('data.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Błąd podczas ładowania pliku JSON");
+            }
+            return response.json();
+        })
+        .then(data => {
+
+            data.umiejetnosci.forEach(skill => {
+                const li = document.createElement("li");
+                li.textContent = skill;
+                skillsList.appendChild(li);
+            });
+
+
+            data.projekty.forEach(project => {
+                const li = document.createElement("li");
+                li.className = "list-group-item bg-transparent";
+                li.innerHTML = `<strong>${project.tytul}</strong> – ${project.opis}`;
+                projectsList.appendChild(li);
+            });
+        })
+        .catch(error => {
+            console.error("Wystąpił błąd:", error);
+        });
 
 });
