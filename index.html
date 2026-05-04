@@ -37,6 +37,7 @@
             </div>
         </section>
 
+
         <section id="o-mnie">
             <h2>O mnie</h2>
             <p class="lead">
@@ -100,11 +101,48 @@
                 <li><strong>Internetowy sklep odzieżowy</strong> – Projekt e-commerce wykonany zespołowo.</li>
             </ol>
         </section>
+        <section id="napisz-do-mnie" class="mt-5 border-top pt-4">
+            <h2>Napisz do mnie</h2>
+            <!-- Атрибут novalidate вимикає стандартну перевірку браузера, щоб працював наш JS -->
+            <form id="contact-form" novalidate>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="imie" class="form-label">Imię</label>
+                        <input type="text" class="form-control" id="imie" placeholder="Wpisz imię">
+                        <div class="invalid-feedback" id="imie-error"></div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="nazwisko" class="form-label">Nazwisko</label>
+                        <input type="text" class="form-control" id="nazwisko" placeholder="Wpisz nazwisko">
+                        <div class="invalid-feedback" id="nazwisko-error"></div>
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="email" class="form-label">E-mail</label>
+                    <input type="email" class="form-control" id="email" placeholder="np. jan.kowalski@example.com">
+                    <div class="invalid-feedback" id="email-error"></div>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="wiadomosc" class="form-label">Wiadomość</label>
+                    <textarea class="form-control" id="wiadomosc" rows="4" placeholder="Twoja wiadomość..."></textarea>
+                    <div class="invalid-feedback" id="wiadomosc-error"></div>
+                </div>
+                
+                <button type="submit" class="theme-btn btn btn-primary">Wyślij wiadomość</button>
+                
+                <!-- Повідомлення про успіх (приховане за замовчуванням) -->
+                <div id="success-message" class="alert alert-success mt-3 d-none" role="alert">
+                    Formularz został wypełniony poprawnie! (Brak wysyłania na backend - Zadanie 5)
+                </div>
+            </form>
+        </section>
 
     </main>
 
     <footer class="text-center py-4">
-        <p>&copy; 2026 Timur Tkachov. Nr indeksu: 66848. Zadanie 4 – JavaScript.</p>
+        <p>&copy; 2026 Timur Tkachov. Nr indeksu: 66848. Zadanie 5 – Formularz i walidacja.</p>
     </footer>
 
     <script src="script.js"></script>
