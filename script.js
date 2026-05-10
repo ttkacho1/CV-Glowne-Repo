@@ -101,9 +101,56 @@ document.addEventListener("DOMContentLoaded", function() {
             }
             
             
+            // (ZADANIE 8)
             if (isValid) {
-                successMessage.classList.remove("d-none");
-                contactForm.reset(); 
+                const formData = {
+                    imie: imie.value,
+                    nazwisko: nazwisko.value,
+                    email: email.value,
+                    wiadomosc: wiadomosc.value
+                };
+
+                const submitBtn = contactForm.querySelector('button[type="submit"]');
+                const originalBtnText = submitBtn.textContent;
+                submitBtn.textContent = "Wysyłanie...";
+                submitBtn.disabled = true;
+
+                
+                const backendURL = "https://formspree.io/f/mzdoypwj";
+
+                
+                fetch(backendURL, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(response => {
+                    if (response.ok) {
+                        
+                        successMessage.textContent = "Wiadomość została pomyślnie wysłana na serwer!";
+                        successMessage.classList.remove("d-none");
+                        successMessage.classList.remove("alert-danger");
+                        successMessage.classList.add("alert-success");
+                        contactForm.reset(); 
+                    } else {
+                        throw new Error("Błąd sieci");
+                    }
+                })
+                .catch(error => {
+                    
+                    successMessage.textContent = "Wystąpił błąd podczas wysyłania. Spróbuj ponownie.";
+                    successMessage.classList.remove("d-none");
+                    successMessage.classList.remove("alert-success");
+                    successMessage.classList.add("alert-danger");
+                })
+                .finally(() => {
+                    
+                    submitBtn.textContent = originalBtnText;
+                    submitBtn.disabled = false;
+                });
             }
         });
     }
